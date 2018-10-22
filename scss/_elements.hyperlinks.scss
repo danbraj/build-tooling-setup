@@ -1,0 +1,16 @@
+/* hyperlinks styles */
+
+
+a {
+    font-weight: 700;
+    color: $accent-color;
+    text-decoration: none;
+
+    &:hover, &:focus {
+        text-decoration: underline;
+    }
+
+    &:visited {
+        color: darken($accent-color, 15%);
+    }
+}

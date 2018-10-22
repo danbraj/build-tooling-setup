@@ -1,0 +1,27 @@
+/* buttons */
+
+.btn {
+    color: #000;
+    border: 2px #000 solid;
+    background: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.78em;
+    text-transform: uppercase;
+    margin: 10px;
+    padding: 12px 20px;
+    display: inline-block;
+
+    &:hover {
+        text-decoration:none;
+        background: #000;
+        color: #fff;
+    }
+
+    &--accent {
+        border-color: $accent-color;
+        &:hover {
+            background: $accent-color;
+        }
+    }
+}

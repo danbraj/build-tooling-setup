@@ -1,0 +1,22 @@
+{
+  "name": "scss-start-project",
+  "version": "0.1.0",
+  "description": "scss start project",
+  "author": "danbraj",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danbraj/scss-start-project.git"
+  },
+  "main": "gulpfile.js",
+  "scripts": {
+    "compile": "gulp"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4"
+  },
+  "license": "MIT"
+}
