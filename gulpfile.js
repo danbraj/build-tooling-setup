@@ -9,8 +9,7 @@ const entries = [
     'main', 'print', 'admin'
 ];
 const src = './scss';
-const dest = './css';
-
+const dest = './dist/res';
 
 
 
