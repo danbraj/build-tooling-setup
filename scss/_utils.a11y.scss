@@ -1,1 +1,37 @@
 /* a11y */
+
+$primary-color: blue !default;
+
+
+.sr-text {
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    left: -1px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.skip-links {
+    position: absolute;
+    clip: rect(0,0,0,0);
+    height: 1px;
+    width: 1px;
+    padding: 0;
+    border: 0;
+    margin: -1px;
+    white-space: normal;
+
+    &:focus {
+        text-align: center;
+        color: #000;
+        clip: auto;
+        background-color: $primary-color;
+        width: 300px;
+        left: calc(50% - 150px);
+        height: 40px;
+        line-height: 40px;
+        z-index: 10;
+    }
+}

@@ -5,14 +5,22 @@ const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 
 
-const name = 'main.scss';
+const entries = [
+    'main', 'print', 'admin'
+];
 const src = './scss';
 const dest = './css';
 
 
+
+
+if (!Array.isArray(entries) || entries.length == 0) return;
+
+let names = entries.length > 1 ? `{${entries.join()}}` : entries[0];
+
 const paths = {
     styles: {
-        src: `${src}/${name}`,
+        src: `${src}/${names}.scss`,
         watch: `${src}/**/*.scss`,
         dest: dest
     }
