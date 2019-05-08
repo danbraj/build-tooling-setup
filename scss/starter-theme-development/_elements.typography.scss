@@ -3,7 +3,11 @@
 $primary-color: blue !default;
 
 html {
-    font-size: 18px;
+    font-size: 20px;
+}
+
+body {
+    background-color: beige;
 }
 
 blockquote {
@@ -12,4 +16,8 @@ blockquote {
     border-left: 5px $primary-color solid;
     font-style: italic;
     font-size: 0.9em;
+}
+
+h1 {
+    margin-bottom: .5rem;
 }
