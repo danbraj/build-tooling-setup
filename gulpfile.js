@@ -1,69 +1,42 @@
-const { src, dest, parallel, series, watch } = require('gulp');
+const gulp = require('gulp');
 const sass = require('gulp-sass');
-const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('gulp-autoprefixer');
-const cleanCSS = require('gulp-clean-css');
-const browserSync = require('browser-sync').create();
-const config = require('./config.js');
+const sourcemaps = require('gulp-sourcemaps');
+const clean_css = require('gulp-clean-css');
+const dotenv = require('dotenv');
 
+dotenv.config();
 
-if (!Array.isArray(config.entries) || config.entries.length == 0) return;
-const names = config.entries.length > 1 ? `{${config.entries.join()}}` : config.entries[0];
-const paths = {
-    src: `${config.src}/${names}.scss`,
-    watch: `${config.src}/**/*.scss`,
-    dest: config.dest,
-    baseDir: config.baseDir
-};
+const SRC_PATH = process.env.STYLES_INPUT_PATH;
+const WATCH_PATH = process.env.STYLES_WATCH_PATH;
+const DEST_PATH = process.env.STYLES_OUTPUT_PATH;
 
+// compile scss in development
 function development() {
-    return src(paths.src)
-        .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(sourcemaps.write('./'))
-        .pipe(dest(paths.dest))
+  return gulp.src(SRC_PATH)
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest(DEST_PATH))
 }
 
-function compile() {
-    return src(paths.src)
-        .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions']
-        }))
-        .pipe(cleanCSS())
-        .pipe(sourcemaps.write('./'))
-        .pipe(dest(paths.dest))
+// compile scss in development and watch them
+function watch() {
+  gulp.watch(
+    WATCH_PATH, gulp.series(development)
+  )
 }
 
-function sasswatch() {
-    watch(paths.watch, series(development))
+// compile scss in production
+function production() {
+  return gulp.src(SRC_PATH)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(autoprefixer())
+    .pipe(clean_css())
+    .pipe(gulp.dest(DEST_PATH))
 }
 
-// browsersync
-
-function devWithBrowserSync() {
-    return src(paths.src)
-        .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(sourcemaps.write('./'))
-        .pipe(dest(paths.dest))
-        .pipe(browserSync.stream())
-}
-
-function sync() {
-    browserSync.init({
-        server: {
-            baseDir: paths.baseDir
-        }
-    });
-    watch(paths.watch, devWithBrowserSync);
-    watch(`${paths.baseDir}*.html`).on('change', browserSync.reload);
-}
-
-// exports
-
-exports.sync = sync;
-exports.compile = compile;
-exports.watch = sasswatch;
-exports.default = development;
+// exports 
+exports.dev = development;
+exports.watch = watch;
+exports.build = production;

@@ -1,23 +1,33 @@
 {
-  "name": "scss-start-project",
+  "name": "build-tooling-setup",
   "version": "0.1.0",
-  "description": "scss start project",
-  "author": "danbraj",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/danbraj/scss-start-project.git"
-  },
-  "main": "gulpfile.js",
+  "description": "My simple configuration of styles and scripts build tools for simple (static) websites.",
+  "main": "index.js",
   "scripts": {
-    "compile": "gulp"
+    "scss:dev": "gulp dev",
+    "scss:watch": "gulp watch",
+    "scss:build": "gulp build",
+    "js:build": "rollup -c"
   },
+  "author": "danbraj",
+  "license": "MIT",
   "devDependencies": {
-    "browser-sync": "^2.26.5",
+    
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^6.1.0",
-    "gulp-clean-css": "^4.2.0",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.3.0",
     "gulp-sass": "^4.0.2",
-    "gulp-sourcemaps": "^2.6.5"
-  },
-  "license": "MIT"
+    "gulp-sourcemaps": "^2.6.5",
+    
+    "rollup": "^2.7.2",
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "@rollup/plugin-node-resolve": "^7.1.3",
+    "rollup-plugin-terser": "^5.3.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    
+    "dotenv": "^8.2.0"
+  
+  }
 }
