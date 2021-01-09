@@ -4,6 +4,6 @@
 
 ## Usage
 
-1. Change filename of `.env.example` to `.env` and configure it.
+1. Configure constant variables in `gulpfile.js`.
 2. Delete `example/` directory.
 3. Let's roll.
